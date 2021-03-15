@@ -346,10 +346,12 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
 
         @Override
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+            Toast.makeText(applicationContext, "onActivityCreated" + activity.getClass().getName(), Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onActivityStarted(Activity activity) {
+            Toast.makeText(applicationContext, "onActivityStarted" + activity.getClass().getName(), Toast.LENGTH_LONG).show();
         }
 
         @Override

@@ -153,7 +153,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
             }, intentFilter);
 
         } catch (Exception e) {
-            
+
         }
     }
 

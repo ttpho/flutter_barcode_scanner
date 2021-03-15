@@ -111,7 +111,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         }
     }
 
-    final CancelBroadcastReceiver cancelBroadcastReceiver = CancelBroadcastReceiver();
+    final CancelBroadcastReceiver cancelBroadcastReceiver = new CancelBroadcastReceiver();
 
     /**
      * Initializes the UI and creates the detector pipeline.

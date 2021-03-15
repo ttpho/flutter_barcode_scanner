@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
@@ -117,13 +118,11 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
 
                 startBarcodeScannerActivityView((String) arguments.get("cancelButtonText"), isContinuousScan);
             }
-            if (call.method.equals("cancel") && pendingResult != null) {
-                Log.v("cancel", activity.getClass().getSimpleName());
-                if (activity instanceof BarcodeCaptureActivity) {
-                    final BarcodeCaptureActivity barcodeCaptureActivity = (BarcodeCaptureActivity)activity;
-                    barcodeCaptureActivity.onCancel();
-                }
-
+            if (call.method.equals("cancel")) {
+                Toast.makeText(activity, "cancel",Toast.LENGTH_LONG).show();
+                final Intent intent = new Intent();
+                intent.setAction("canncel");
+                activity.sendBroadcast(intent);
             }
         } catch (Exception e) {
             Log.e(TAG, "onMethodCall: " + e.getLocalizedMessage());

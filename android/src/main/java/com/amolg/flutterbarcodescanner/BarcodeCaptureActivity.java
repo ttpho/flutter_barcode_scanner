@@ -100,18 +100,13 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
 
     private int flashStatus = USE_FLASH.OFF.ordinal();
 
-    class CancelBroadcastReceiver extends BroadcastReceiver {
-
+    final BroadcastReceiver cancelBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-
-                Toast.makeText(context, "onReceive", Toast.LENGTH_LONG).show();
-                BarcodeCaptureActivity.this.onCancel();
-
+            Toast.makeText(context, "onReceive", Toast.LENGTH_LONG).show();
+            onCancel();
         }
-    }
-
-    final CancelBroadcastReceiver cancelBroadcastReceiver = new CancelBroadcastReceiver();
+    };
 
     /**
      * Initializes the UI and creates the detector pipeline.

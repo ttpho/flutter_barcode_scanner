@@ -108,6 +108,21 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         }
     };
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("cancel");
+        intentFilter.addDataScheme("package");
+        getApplication().registerReceiver(cancelBroadcastReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        getApplication().unregisterReceiver(cancelBroadcastReceiver);
+    }
+
     /**
      * Initializes the UI and creates the detector pipeline.
      */
@@ -148,11 +163,6 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
 
             gestureDetector = new GestureDetector(this, new CaptureGestureListener());
             scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
-
-            IntentFilter intentFilter = new IntentFilter();
-            intentFilter.addAction("cancel");
-            intentFilter.addDataScheme("package");
-            getApplication().registerReceiver(cancelBroadcastReceiver, intentFilter);
 
         } catch (Exception e) {
 
@@ -280,7 +290,6 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
         if (mPreview != null) {
             mPreview.release();
         }
-        getApplication().unregisterReceiver(cancelBroadcastReceiver);
     }
 
     /**

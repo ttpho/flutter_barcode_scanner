@@ -121,7 +121,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
             if (call.method.equals("cancel")) {
                 Toast.makeText(activity, "cancel" + activity.getClass().getName(),Toast.LENGTH_LONG).show();
                 final Intent intent = new Intent("canncel");
-                activity.getApplication().sendBroadcast(intent);
+                applicationContext.sendBroadcast(intent);
             }
         } catch (Exception e) {
             Log.e(TAG, "onMethodCall: " + e.getLocalizedMessage());
@@ -346,12 +346,10 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
 
         @Override
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-            Toast.makeText(applicationContext, "onActivityCreated" + activity.getClass().getName(), Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onActivityStarted(Activity activity) {
-            Toast.makeText(applicationContext, "onActivityStarted" + activity.getClass().getName(), Toast.LENGTH_LONG).show();
         }
 
         @Override

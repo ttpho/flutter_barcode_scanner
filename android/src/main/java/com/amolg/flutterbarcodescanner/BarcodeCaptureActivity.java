@@ -151,7 +151,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
 
             IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction("cancel");
-
+            intentFilter.addDataScheme("package");
             registerReceiver(cancelBroadcastReceiver, intentFilter);
 
         } catch (Exception e) {

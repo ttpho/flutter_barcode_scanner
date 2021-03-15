@@ -39,6 +39,7 @@ import io.flutter.embedding.engine.plugins.lifecycle.FlutterLifecycleAdapter;
  */
 public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityResultListener, StreamHandler, FlutterPlugin, ActivityAware {
     private static final String CHANNEL = "flutter_barcode_scanner";
+    public static final String CANCEL = "flutter_barcode_scanner.cancel";
 
     private static FlutterActivity activity;
     private static Result pendingResult;
@@ -119,8 +120,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
                 startBarcodeScannerActivityView((String) arguments.get("cancelButtonText"), isContinuousScan);
             }
             if (call.method.equals("cancel")) {
-                Toast.makeText(activity, "cancel" + activity.getClass().getName(),Toast.LENGTH_LONG).show();
-                final Intent intent = new Intent("cancel");
+                final Intent intent = new Intent(CANCEL);
                 activity.getApplication().sendBroadcast(intent);
             }
         } catch (Exception e) {
@@ -346,32 +346,26 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
 
         @Override
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-            Log.v("onActivityCreated", activity.getClass().getSimpleName());
         }
 
         @Override
         public void onActivityStarted(Activity activity) {
-            Log.v("onActivityStarted", activity.getClass().getSimpleName());
         }
 
         @Override
         public void onActivityResumed(Activity activity) {
-            Log.v("onActivityResumed", activity.getClass().getSimpleName());
         }
 
         @Override
         public void onActivityPaused(Activity activity) {
-            Log.v("onActivityPaused", activity.getClass().getSimpleName());
         }
 
         @Override
         public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-            Log.v("onActivitySaveInstance", activity.getClass().getSimpleName());
         }
 
         @Override
         public void onActivityDestroyed(Activity activity) {
-            Log.v("onActivityDestroyed", activity.getClass().getSimpleName());
             if (thisActivity == activity && activity.getApplicationContext() != null) {
                 ((Application) activity.getApplicationContext())
                         .unregisterActivityLifecycleCallbacks(
@@ -381,7 +375,6 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
 
         @Override
         public void onActivityStopped(Activity activity) {
-            Log.v("onActivityStopped", activity.getClass().getSimpleName());
         }
     }
 }

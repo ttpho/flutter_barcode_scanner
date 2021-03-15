@@ -103,7 +103,6 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
     final BroadcastReceiver cancelBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Toast.makeText(context, "onReceive", Toast.LENGTH_LONG).show();
             onCancel();
         }
     };
@@ -150,7 +149,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity implements B
             scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
 
             IntentFilter intentFilter = new IntentFilter();
-            intentFilter.addAction("cancel");
+            intentFilter.addAction(FlutterBarcodeScannerPlugin.CANCEL);
             getApplication().registerReceiver(cancelBroadcastReceiver, intentFilter);
 
         } catch (Exception e) {

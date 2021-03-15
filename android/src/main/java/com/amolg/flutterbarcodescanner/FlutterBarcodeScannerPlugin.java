@@ -121,7 +121,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
             if (call.method.equals("cancel")) {
                 Toast.makeText(activity, "cancel" + activity.getClass().getName(),Toast.LENGTH_LONG).show();
                 final Intent intent = new Intent("canncel");
-                activity.sendBroadcast(intent);
+                activity.getApplication().sendBroadcast(intent);
             }
         } catch (Exception e) {
             Log.e(TAG, "onMethodCall: " + e.getLocalizedMessage());

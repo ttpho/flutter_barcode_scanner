@@ -22,6 +22,8 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
+    namespac 'com.amolg.flutterbarcodescanner'
+    
     compileSdkVersion 29
 
     defaultConfig {
